@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Outfit&display=swap");
+
+*,
+::after,
+::before {
+  font-family: "Outfit", sans-serif;
+  letter-spacing: 0.05rem;
+}
+
+body {
+  background-color: hsl(0, 2%, 10%);
+}
+
+.card_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.Card {
+  --padding: 1rem;
+  background-color: hsl(32, 100%, 50%);
+  border-radius: 0.25rem;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.2);
+}
+
+.card_header {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding: var(--padding);
+  padding-bottom: 0;
+  text-align: center;
+}
+
+.card_header.card_image {
+  padding: 0;
+}
+
+.card_header.card_image > img {
+  display: block;
+  width: 100%;
+  height: 200px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  object-position: center;
+  transition: 200ms transform ease-in-out;
+}
+
+.Card:hover .card_header.card_image > img {
+  transform: scale(1.025);
+}
+
+.card_body {
+  font-size: 0.9rem;
+  padding: var(--padding);
+}
