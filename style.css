@@ -57,3 +57,20 @@ body {
   font-size: 0.9rem;
   padding: var(--padding);
 }
+
+.hide {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
+
+.loading-show {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.loading-hide {
+  visibility: hidden;
+}
