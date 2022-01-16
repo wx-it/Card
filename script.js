@@ -49,6 +49,10 @@ query ($id: Int) {
     });
 };
 
+const charactersID = [
+  40, 40882, 14, 246, 89028, 73935, 145342, 145341, 13, 17, 62,
+];
+
 let i = 0;
 const h3 = document.getElementsByTagName("h3");
 const img = document.getElementsByTagName("img");
@@ -62,29 +66,28 @@ function updateUI(name, description, image) {
   i++;
 }
 
-// luffy
-fetchData(40).then(({ data }) => {
-  const { name, description, image } = data.Character;
-  updateUI(name, description, image);
-});
+// so that we don't generate the same randomID again and again
+const isIDGeneratedAlready = [];
+for (let j = 0; j < 3; j++) {
+  const randomID =
+    charactersID[Math.floor(Math.random() * charactersID.length)];
 
-// eren
-fetchData(40882).then(({ data }) => {
-  const { name, description, image } = data.Character;
-  updateUI(name, description, image);
-});
-
-// itachi
-fetchData(14).then(({ data }) => {
-  const { name, description, image } = data.Character;
-  updateUI(name, description, image);
-
-  // for loading screen
-  if (data) {
-    document.querySelector(".card_grid").classList.add("show");
-    document.querySelector(".card_grid").classList.remove("hide");
-
-    document.getElementsByTagName("h1")[0].classList.add("loading-hide");
-    document.getElementsByTagName("h1")[0].classList.remove("loading-show");
+  if (isIDGeneratedAlready.includes(randomID)) {
+    continue;
+  } else {
+    isIDGeneratedAlready.push(randomID);
   }
-});
+
+  fetchData(randomID).then(({ data }) => {
+    const { name, description, image } = data.Character;
+    updateUI(name, description, image);
+
+    if (data && j == 2) {
+      document.querySelector(".card_grid").classList.add("show");
+      document.querySelector(".card_grid").classList.remove("hide");
+
+      document.getElementsByTagName("h1")[0].classList.add("loading-hide");
+      document.getElementsByTagName("h1")[0].classList.remove("loading-show");
+    }
+  });
+}
