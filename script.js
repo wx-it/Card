@@ -73,6 +73,7 @@ for (let j = 0; j < 3; j++) {
     charactersID[Math.floor(Math.random() * charactersID.length)];
 
   if (isIDGeneratedAlready.includes(randomID)) {
+    j--;
     continue;
   } else {
     isIDGeneratedAlready.push(randomID);
