@@ -101,12 +101,3 @@ body {
     width: 1.25em;
   }
 }
-
-.loading-show {
-  margin-top: 50px;
-  text-align: center;
-}
-
-.loading-hide {
-  visibility: hidden;
-}
