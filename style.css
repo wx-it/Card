@@ -8,7 +8,7 @@
 }
 
 body {
-  background-color: hsl(0, 2%, 10%);
+  background-color: #f7cac9;
 }
 
 .card_grid {
@@ -20,7 +20,7 @@ body {
 
 .Card {
   --padding: 1rem;
-  background-color: hsl(32, 100%, 50%);
+  background-color: #efc050;
   border-radius: 0.25rem;
   overflow: hidden;
   border: none;
@@ -56,4 +56,21 @@ body {
 .card_body {
   font-size: 0.9rem;
   padding: var(--padding);
+}
+
+.hide {
+  visibility: hidden;
+}
+
+.show {
+  visibility: visible;
+}
+
+.loading-show {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.loading-hide {
+  visibility: hidden;
 }
