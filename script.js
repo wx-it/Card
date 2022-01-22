@@ -1,6 +1,3 @@
-// basic data fetching is done just need to update the contents of html using the data
-// currently we are only getting three characters
-
 const fetchData = async (id) => {
   var query = `
 query ($id: Int) {
@@ -52,23 +49,23 @@ query ($id: Int) {
 const charactersID = [
   40, 40882, 14, 246, 89028, 73935, 145342, 145341, 13, 17, 62,
 ];
-
-let i = 0;
+let index = 0;
+const numberOfCards = 3;
 const h3 = document.getElementsByTagName("h3");
 const img = document.getElementsByTagName("img");
 const p = document.getElementsByTagName("p");
 
 function updateUI(name, description, image) {
-  h3[i].innerText = name.full;
-  img[i].src = image.large;
-  img[i].setAttribute("alt", name.full);
-  p[i].innerText = description;
-  i++;
+  h3[index].innerText = name.full;
+  img[index].src = image.large;
+  img[index].setAttribute("alt", name.full);
+  p[index].innerText = description;
+  index++;
 }
 
 // so that we don't generate the same randomID again and again
 const isIDGeneratedAlready = [];
-for (let j = 0; j < 3; j++) {
+for (let j = 0; j < numberOfCards; j++) {
   const randomID =
     charactersID[Math.floor(Math.random() * charactersID.length)];
 
@@ -83,7 +80,7 @@ for (let j = 0; j < 3; j++) {
     const { name, description, image } = data.Character;
     updateUI(name, description, image);
 
-    if (data && j == 2) {
+    if (data && j == numberOfCards - 1) {
       document.querySelector(".card_grid").classList.add("show");
       document.querySelector(".card_grid").classList.remove("hide");
 
