@@ -1,5 +1,12 @@
-// basic data fetching is done just need to update the contents of html using the data
-// currently we are only getting three characters
+// global variables
+const charactersID = [
+  40, 40882, 14, 246, 89028, 73935, 145342, 145341, 13, 17, 62,
+];
+let numberOfCards = 3;
+const h3 = document.getElementsByTagName("h3");
+const img = document.getElementsByTagName("img");
+const p = document.getElementsByTagName("p");
+let cards = null;
 
 const fetchData = async (id) => {
   var query = `
@@ -49,46 +56,73 @@ query ($id: Int) {
     });
 };
 
-const charactersID = [
-  40, 40882, 14, 246, 89028, 73935, 145342, 145341, 13, 17, 62,
-];
+const showLoading = () => {
+  const cardGrid = document.querySelector(".card_grid");
+  cardGrid.classList.add("hide");
+  cardGrid.classList.remove("show");
+  document.getElementsByTagName("h1")[0].style.display = "flex";
+};
 
-let i = 0;
-const h3 = document.getElementsByTagName("h3");
-const img = document.getElementsByTagName("img");
-const p = document.getElementsByTagName("p");
+const hideLoading = () => {
+  const cardGrid = document.querySelector(".card_grid");
+  cardGrid.classList.add("show");
+  cardGrid.classList.remove("hide");
+  document.getElementsByTagName("h1")[0].style.display = "none";
+};
 
-function updateUI(name, description, image) {
-  h3[i].innerText = name.full;
-  img[i].src = image.large;
-  img[i].setAttribute("alt", name.full);
-  p[i].innerText = description;
-  i++;
+function updateUI(name, description, image, index) {
+  h3[index].innerText = name.full;
+  img[index].src = image.large;
+  img[index].setAttribute("alt", name.full);
+  p[index].innerText = description;
+
+  if (index === numberOfCards - 1) {
+    hideLoading();
+    cards = document.querySelectorAll(".Card");
+  }
 }
 
-// so that we don't generate the same randomID again and again
-const isIDGeneratedAlready = [];
-for (let j = 0; j < 3; j++) {
-  const randomID =
-    charactersID[Math.floor(Math.random() * charactersID.length)];
+const showCards = () => {
+  const isIDGeneratedAlready = [];
+  for (let j = 0; j < numberOfCards; j++) {
+    const randomID =
+      charactersID[Math.floor(Math.random() * charactersID.length)];
 
-  if (isIDGeneratedAlready.includes(randomID)) {
-    j--;
-    continue;
-  } else {
-    isIDGeneratedAlready.push(randomID);
+    if (isIDGeneratedAlready.includes(randomID)) {
+      j--;
+      continue;
+    } else {
+      isIDGeneratedAlready.push(randomID);
+    }
+
+    fetchData(randomID).then(({ data }) => {
+      const { name, description, image } = data.Character;
+      updateUI(name, description, image, j);
+    });
+  }
+};
+
+const searchACharacter = () => {
+  const id = Number(document.getElementById("idInput").value);
+  if (!id) {
+    alert("Please provide a valid ID");
+    return;
   }
 
-  fetchData(randomID).then(({ data }) => {
-    const { name, description, image } = data.Character;
-    updateUI(name, description, image);
+  showLoading();
+  fetchData(id)
+    .then(({ data }) => {
+      cards[1].style.display = "none";
+      cards[2].style.display = "none";
+      numberOfCards = 1;
+      const { name, description, image } = data.Character;
+      updateUI(name, description, image, 0);
+    })
+    .catch((error) => {
+      console.log(error);
+      hideLoading();
+      alert("Please provide a valid ID");
+    });
+};
 
-    if (data && j == 2) {
-      document.querySelector(".card_grid").classList.add("show");
-      document.querySelector(".card_grid").classList.remove("hide");
-
-      document.getElementsByTagName("h1")[0].classList.add("loading-hide");
-      document.getElementsByTagName("h1")[0].classList.remove("loading-show");
-    }
-  });
-}
+showCards();

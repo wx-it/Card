@@ -14,9 +14,9 @@ body {
 
 .card_grid {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-wrap: wrap;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
 }
 
@@ -26,6 +26,7 @@ body {
   border-radius: 0.25rem;
   overflow: hidden;
   width: 25%;
+  margin: 20px;
   box-shadow: 0 2px 5px 0 rgb(0, 0, 0, 0.2);
 }
 
@@ -67,10 +68,6 @@ body {
 
 .show {
   visibility: visible;
-}
-
-.loading-hide {
-  visibility: hidden;
 }
 
 .loader {
