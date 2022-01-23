@@ -8,9 +8,40 @@
 }
 
 body {
-  background-color: #f7cac9;
+  background-color: #bb9696;
   font-family: "Outfit", sans-serif;
 }
+
+.search {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding: 1rem;
+}
+
+#idInput {
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  text-align: center;
+  background-color: #e198f3;
+  box-shadow: 0 2px 5px 0 rgb(0.5, 0.5, 0.5, 0.2);
+}
+
+#idInput::placeholder {
+  color: black;
+}
+
+.search-button button {
+  border-radius: 5px;
+  border: none;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  text-align: center;
+  background-color: #c94e81;
+  box-shadow: 0 2px 5px 0 rgb(0.5, 0.5, 0.5, 0.2);
+  cursor: pointer;
+}
+
 
 .card_grid {
   display: flex;
@@ -22,7 +53,7 @@ body {
 
 .Card {
   --padding: 1rem;
-  background-color: #efc050;
+  background-color: #b674ad;
   border-radius: 0.25rem;
   overflow: hidden;
   width: 25%;
@@ -73,7 +104,7 @@ body {
 .loader {
   font-family: "ZCOOL KuaiLe", cursive;
   font-size: 40px;
-  color: palevioletred;
+  color: rgb(173, 80, 111);
   position: absolute;
   text-align: center;
 }
