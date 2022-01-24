@@ -40,8 +40,8 @@ body {
   background-color: #c94e81;
   box-shadow: 0 2px 5px 0 rgb(0.5, 0.5, 0.5, 0.2);
   cursor: pointer;
+  color: white;
 }
-
 
 .card_grid {
   display: flex;
@@ -130,4 +130,9 @@ body {
   to {
     width: 1.25em;
   }
+}
+
+::placeholder {
+  color: white;
+  opacity: 0.5;
 }
