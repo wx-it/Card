@@ -9,5 +9,5 @@ This website can be improved in many ways like:
 
 Other then that this project was a lot of fun and we learned a lot of stuff from it :) thank you morning and thank you to the hosts.
 
-# JAVASCRIPT BY: 0rGaan1c#0061 CSS BY: wxit#8928 HTML BY: Solo#5896
+JS by: 0rGaan1c#0061 CSS by: wxit#8928 HTML by: Solo#5896
 
